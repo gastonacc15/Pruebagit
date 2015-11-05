@@ -1,0 +1,108 @@
+/*
+Dada una lista simplemente encadenada y un numero entero:
+     a- Verificar si esta o no en la lista (int enta en la lista (int esta_en_la_lista (struct lista*com, int n)) 1- esta, 2- no esta.
+     b- La primera aparición del numero, posicion dentro de la lista (int posicion_en_la_lista (struct lista*com, int n))
+     c- Cuanta veces se repite en la lista un numero (int cuantas_veces (struct lista*com, int n))*/
+#include<stdio.h>
+#include<stdlib.h>
+
+void cargar_lista(struct lista *&com);
+void mostrar_lista(struct lista * com);
+int esta_en_la_lista (struct lista*com, int n)
+void dar_pausa();
+
+//Necesario para que reconozca las listas.
+struct lista
+{int num;
+ struct lista*sig;
+};
+//----------------------------------------
+
+
+//Programa principal.       
+int main ()
+{
+struct lista *comienzo;
+int cantidad;
+cargar_lista(comienzo);
+mostrar_lista(comienzo);
+
+dar_pausa();
+}
+//-------------------
+
+//Declaración de funciones y procedimientos.
+void dar_pausa()
+{
+  printf("\n");
+  system("pause");   
+     
+}
+
+void cargar_lista(struct lista* &com)
+{
+    struct lista * p;
+    struct lista * ant;
+    int a;
+    
+    printf("\n Ingrese un numero: ");
+    scanf("%d", &a);
+    if (a==0)
+    com=NULL;
+    
+    else
+    {
+        com=new struct lista;
+        com->num=a;
+        com->sig=NULL;
+        ant=com;
+        printf("\n Ingresar otro numero: ");
+        scanf("%d", &a);
+    
+        
+        while(a!=0)
+        {
+         p=new struct lista;
+         p->num=a;
+         p->sig=NULL;
+         ant->sig=p;
+         ant=p;
+         printf("\n Vuelva a ingresar otro numero: ");
+         scanf("%d", &a);          
+        } 
+   }
+}
+
+void mostrar_lista(struct lista * com)
+{
+struct lista *p;
+ p=com;
+ if(com!=NULL)
+    while(p!=NULL)
+    {
+      printf("\n %d",p->num);
+      p=p->sig;
+    }
+ else printf("\n\n listas vacias");
+}
+
+int esta_en_la_lista (struct lista*com, int n)
+{
+ struct lista *p;
+ p=com;
+ int esta=0;
+ printf("\n Ingrese un numero: ");
+ scanf("\n %d", &n);
+ if(com!=NULL)
+    while((p!=NULL)&&(esta!=1))
+    {
+      if(p->num==n)
+      p=p->sig;
+    }
+ else printf("\n\n listas vacias");
+}
+
+
+
+
+//-----------------------------------------------------------------------------
